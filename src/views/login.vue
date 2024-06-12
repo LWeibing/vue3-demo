@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {onMounted, onUnmounted, reactive, ref} from "vue";
+import {reactive, ref} from "vue";
 import {login} from "../api/login.ts";
 import {ElMessage} from "element-plus";
 import {mainStore} from '@/store'
@@ -28,9 +28,9 @@ const rules = reactive({
 const fromRef = ref()
 
 //登录
-const onSubmit = (fromEl) => {
+const onSubmit = (fromEl:any) => {
   if (!fromEl) return
-  fromEl.validate(async (valid) => {
+  fromEl.validate(async (valid:any) => {
     if (valid) {//校验成功
       //发送请求
       await login(form).then((res: any) => {
@@ -60,6 +60,11 @@ const onSubmit = (fromEl) => {
 <template>
   <main class="main">
     <article class="content">
+      <div class="tip">
+        <p><span>管理员：</span>admin 123456</p>
+        <p><span>会员：</span>vip 12345</p>
+        <p><span>用户：</span>user 1234</p>
+      </div>
       <h2 class="title">登录</h2>
       <div class="form">
         <el-form :model="form" :rules="rules" ref="fromRef">
@@ -83,6 +88,19 @@ const onSubmit = (fromEl) => {
   width: 100vw;
   height: 100vh;
   background-color: cadetblue;
+  position: relative;
+
+  .tip {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: white;
+    span {
+      width: 100px;
+      text-align: right;
+      display: inline-block;
+    }
+  }
 
   .content {
     height: 100vh;
