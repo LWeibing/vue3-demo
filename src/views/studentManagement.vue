@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {onMounted, reactive, ref, watch} from "vue";
 import {addStudent, editStudent, getSearchStudent, removeStudent} from "../api/student.ts";
-import {IStudentData} from "../models";
+import {IStudentData} from "@/models";
 import {
   Edit,
   Delete,
@@ -21,7 +21,7 @@ let pageInfo = reactive({
   pageSize: 10,
   total: 0,
 })
-const searchKey = reactive({})
+const searchKey:any = reactive({})
 
 const form = ref<IStudentData>({
   id: 0,
