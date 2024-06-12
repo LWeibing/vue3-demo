@@ -10,7 +10,6 @@ export default defineConfig({
     //     port: 8080
     // },
     base:'./',
-    publicPath: './',
     plugins: [
         vue(),
         Components({
