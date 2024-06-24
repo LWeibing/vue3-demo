@@ -43,6 +43,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
+    console.log(from,'from');
     if(to.path==='/login'){
         next()
     }else {

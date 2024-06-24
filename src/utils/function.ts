@@ -2,7 +2,9 @@ import {mainStore} from "../store";
 import {storeToRefs} from "pinia";
 import {INavMenus} from "../models";
 import {Document, Setting} from "@element-plus/icons-vue";
-import {userList, userSearch} from "../api/user.ts";
+import {userSearch} from "../api/user.ts";
+import * as studentApi from "../api/student.ts";
+import * as userApi from "../api/user.ts";
 
 const store = mainStore()
 const {user}: any = storeToRefs(store)
@@ -22,7 +24,7 @@ export const getRoutes = () => {
         {name: '权限管理', code: 'permissionsManagement', url: '/permissionsManagement', icon: Setting},
     ]
 
-    const navItems = navArr.filter(i => {
+    const navItems:any = navArr.filter(i => {
         if (nav.includes(i.code) || i.code === 'index') {
             return i
         }
@@ -33,5 +35,17 @@ export const getRoutes = () => {
 export const getUser = async ()=>{
     await userSearch({id:user.value.id}).then((res: any) => {
         store.setUser(res.data)
+    })
+}
+
+export const getStudentList = async () => {
+    await studentApi.getStudentList().then((res:any)=>{
+        store.setStudentList(res.data)
+    })
+}
+
+export const getUserList = async () => {
+    await userApi.userList().then((res:any)=>{
+        store.setUserList(res.data)
     })
 }

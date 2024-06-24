@@ -9,7 +9,7 @@ export default defineConfig({
     // server: {
     //     port: 8080
     // },
-    base:'./',
+    base:'/vue3-demo-dist/',
     plugins: [
         vue(),
         Components({

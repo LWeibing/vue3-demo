@@ -5,7 +5,9 @@ export const mainStore = defineStore('main', {
         return {
             user: {},
             token:'',
-            routes:[]
+            routes:[],
+            studentList:[],
+            userList:[],
         }
     },
     actions: {
@@ -17,6 +19,12 @@ export const mainStore = defineStore('main', {
         },
         setRoutes(state:[]) {
             this.routes = state
+        },
+        setStudentList(state:[]) {
+            this.studentList = state
+        },
+        setUserList(state:[]) {
+            this.userList = state
         },
     },
     persist: {

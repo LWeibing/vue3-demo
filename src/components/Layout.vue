@@ -2,7 +2,8 @@
 import Breadcrumb from "@/components/Breadcrumb.vue";
 import {mainStore} from "@/store";
 import {useRouter} from "vue-router";
-import {ref, watch} from "vue";
+import {onBeforeMount, onMounted, ref, watch} from "vue";
+import {getStudentList, getUserList} from "@/utils/function.ts";
 
 const store = mainStore()
 const router = useRouter()
@@ -11,11 +12,11 @@ const onLoginOut = () => {
   store.token = ''
   router.push('/login')
 }
-const IKey = ref('')
 
-watch(store.user.function.nav, () => {
-  IKey.value = new Date()
-}, {deep: true})
+onMounted(async ()=>{
+  await getUserList()
+  await getStudentList()
+})
 
 </script>
 
@@ -23,7 +24,7 @@ watch(store.user.function.nav, () => {
   <div class="common-layout">
     <el-container class="container">
       <el-aside class="aside">
-        <Nav :key="IKey"/>
+        <Nav/>
       </el-aside>
       <el-container>
         <el-header class="header">
